@@ -10,66 +10,85 @@
 </head>
 
 <body>
-    <div class="container bg-white">
+    <div class="container bg-white my-5 p-4 border-black border-2 rounded-3">
         <div class="row">
-            <div class="col-lg-6">
-                <h2>Selecione</h2>
-                <label>
-                    <input type="radio" name="tipo" value="adulto" onchange="atualizarSelecao('tipo')">
-                    <span class="opcao-texto ativo" id="lblAdulto">Adulto</span>
-                </label>
-                <label>
-                    <input type="radio" name="tipo" value="criança" onchange="atualizarSelecao('tipo')">
-                    <span class="opcao-texto" id="lblCrianca">Criança</span>
-                </label>
-                <p class="sub-info" id="infoIdade"></p>
-            </div>
-            <div class="col-lg-6">
-                <h2>Gênero</h2>
-                <label>
-                    <input type="radio" name="genero" value="masculino" onchange="atualizarSelecao('genero')">
-                    <span class="opcao-texto ativo" id="lblMasculino">Masculino</span>
-                </label>
-                <label>
-                    <input type="radio" name="genero" value="feminino" onchange="atualizarSelecao('genero')">
-                    <span class="opcao-texto" id="lblFeminino">Feminino</span>
-                </label>
+            <div class="col-6 col-sm-6 col-md-4">
+                <!--adulto ou criança-->
+                <section class="row">
+                    <h4>Selecione</h4>
+                    <label>
+                        <input type="radio" name="tipo" value="adulto" onchange="atualizarSelecao('tipo')">
+                        <span id="lblAdulto">Adulto</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="tipo" value="criança" onchange="atualizarSelecao('tipo')">
+                        <span id="lblCrianca">Criança</span>
+                    </label>
+                    <p class="text-muted small mt-2" id="infoIdade"></p>
+                </section>
+
+                <!--genero-->
+                <section>
+                    <div class="col-6 col-sm-6 col-md-8">
+                        <h4>Gênero</h4>
+                        <label>
+                            <input type="radio" name="genero" value="masculino" onchange="atualizarSelecao('genero')">
+                            <span id="lblMasculino">Masculino</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="genero" value="feminino" onchange="atualizarSelecao('genero')">
+                            <span id="lblFeminino">Feminino</span>
+                        </label>
+                    </div>
+                </section>
+                
+                <!--peso, altura e idade-->
+                <section class="row">
+                    <div class="col-sm-4">
+                        <label for="peso" class="form-label">Peso(Kg)</label>
+                        <input type="number" class="form-control" id="peso" step="0.1">
+                    </div>
+
+                    <div class="col-sm-4">
+                        <label for="altura" class="form-label">Altura</label>
+                        <input type="number" class="form-control" id="altura" step="0.01">
+                    </div>
+
+                    <div class="col-sm-4">
+                        <label for="idade" class="form-label">Idade</label>
+                        <select id="idade" class="form-select">
+                            <option value="">--</option>
+                        </select>
+                    </div>
+                </section>
             </div>
         </div>
     </div>
 
     <script>
-        function atualizarSelecao(grupo) 
-        {
-            console.log("Entrei no atualizarSelecao: " + grupo);
-            if (grupo === 'tipo') 
-            {
+        function atualizarSelecao(grupo) {
+            if (grupo === 'tipo') {
                 const tipoSelecionado = document.querySelector('input[name="tipo"]:checked').value;
                 const infoIdade = document.getElementById('infoIdade');
-                if(tipoSelecionado === 'adulto')
-                {
-                    document.getElementByTd('lblAdulto').classList.add('laranja');
-                    documwnt.getElementById('lblCrianca').classList.remove('laranja');
+                if (tipoSelecionado === 'adulto') {
+                    document.getElementById('lblAdulto').classList.add('laranja');
+                    document.getElementById('lblCrianca').classList.remove('laranja');
                     infoIdade.textContent = "Acima de 19 anos";
                 }
-                else
-                {
+                else {
                     document.getElementById('lblCrianca').classList.add('laranja');
                     document.getElementById('lblAdulto').classList.remove('laranja');
                     infoIdade.textContent = "Abaixo de 19 anos";
                 }
             }
 
-            if(grupo === 'genero')
-            {
+            if (grupo === 'genero') {
                 const tipoSelecionado = document.querySelector('input[name="genero"]:checked').value;
-                if(generoSelecionado === 'masculino')
-                {
+                if (tipoSelecionado === 'masculino') {
                     document.getElementById('lblMasculino').classList.add('laranja');
                     document.getElementById('lblFeminino').classList.remove('laranja');
                 }
-                else
-                {
+                else {
                     document.getElementById('lblFeminino').classList.add('laranja');
                     document.getElementById('lblMasculino').classList.remove('laranja');
                 }
